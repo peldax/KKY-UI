@@ -130,8 +130,6 @@ void Executor::showSolution(SharedPtr<Node> result) const noexcept
 {
     while (true)
     {
-        std::cout << "Current state:";
-
         for (auto value : result->getValues())
         {
             std::cout << " " << value;
