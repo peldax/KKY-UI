@@ -31,7 +31,7 @@ private:
 
 public:
 
-    Node(Values values, Parent parent = {}):
+    Node(const Values& values, const Parent& parent = {}):
             m_values(values), m_parent(parent)
     {
         // Nothing to do
