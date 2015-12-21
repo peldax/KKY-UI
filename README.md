@@ -8,34 +8,27 @@ This is seminar work for subject KKY / UI (Artificial Inteligence) at University
 
 This little application computes the fastest way how to spill a fluid between different bottles to get desired amount in each bottle.
 
-Insert number of units:
+#### Example:
+
+##### Insert number of units:
 \> 3
-
-Insert maximum size of 1. unit:
+##### Insert maximum size of 1. unit:
 \> 9
-
-Insert maximum size of 2. unit:
+##### Insert maximum size of 2. unit:
 \> 8
-
-Insert maximum size of 3. unit:
+##### Insert maximum size of 3. unit:
 \> 2
-
-Insert desired state of 1. unit:
+##### Insert desired state of 1. unit:
 \> 4
-
-Insert desired state of 2. unit:
+##### Insert desired state of 2. unit:
 \> 3
-
-Insert desired state of 3. unit:
+##### Insert desired state of 3. unit:
 \> 2
-
-Insert initial state of 1. unit:
+##### Insert initial state of 1. unit:
 \> 9
-
-Insert initial state of 2. unit:
+##### Insert initial state of 2. unit:
 \> 0
-
-Insert initial state of 3. unit:
+##### Insert initial state of 3. unit:
 \> 0
 
  4 3 2. Moved from unit #2 to unit #3
