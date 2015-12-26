@@ -9,7 +9,9 @@ This is seminar work for subject KKY / UI (Artificial Inteligence) at University
 This little application computes the fastest way how to spill a fluid between different bottles to get desired amount in each bottle.
 This algorithm uses heuristic ranking system to enormously enhance its performance compared to standard BFS.
 
-## Example:
+## Example
+
+You can either insert data manualy...
 
 ##### Insert number of units:
 \> 3
@@ -31,6 +33,12 @@ This algorithm uses heuristic ranking system to enormously enhance its performan
 \> 0
 ##### Insert initial state of 3. unit:
 \> 0
+
+...or pass them as parameters (sizes of bottles, desired state, initial state)
+
+##### ./KKY-UI 9 8 2 4 3 2 9 0 0
+
+### Output:
 
  4 3 2. Moved from unit #2 to unit #3
  
