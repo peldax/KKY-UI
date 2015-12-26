@@ -7,8 +7,9 @@
 This is seminar work for subject KKY / UI (Artificial Inteligence) at University of West Bohemia - Faculty of Applied Sciences.
 
 This little application computes the fastest way how to spill a fluid between different bottles to get desired amount in each bottle.
+This algorithm uses heuristic ranking system to enormously enhance its performance compared to standard BFS.
 
-#### Example:
+## Example:
 
 ##### Insert number of units:
 \> 3
