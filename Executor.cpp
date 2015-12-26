@@ -4,14 +4,14 @@
 
 /* ********************************************************************************************** */
 
-void Executor::execute()
+void Executor::load()
 {
     unsigned int numberOfUnits;
 
     std::cout << "Insert number of units:\n> ";
     std::cin >> numberOfUnits;
 
-    if (numberOfUnits == 0)
+    if (numberOfUnits <= 0)
         return;
 
     // Load states and sizes
@@ -20,15 +20,61 @@ void Executor::execute()
     loadDesired(numberOfUnits);
     Values initial = loadInitial(numberOfUnits);
 
-    // Initiate open list
+    execute(initial);
+}
 
+void Executor::loadArguments(int argc, char *argv[])
+{
+    if ((argc - 1) % 3 != 0)
+    {
+        std::cout << "Wrong arguments.";
+        return;
+    }
+
+    unsigned int numberOfUnits = std::abs((argc - 1 ) / 3);
+
+    unsigned int it = 1;
+
+    m_sizes = Values(numberOfUnits);
+
+    for (unsigned int i = 0; i < numberOfUnits; i++)
+    {
+        m_sizes[i] = std::abs(std::atoi(argv[it]));
+        ++it;
+    }
+
+    m_desired = Values(numberOfUnits);
+
+    for (unsigned int i = 0; i < numberOfUnits; i++)
+    {
+        m_desired[i] = std::abs(std::atoi(argv[it]));
+        if (m_desired[i] > m_sizes[i])
+            throw std::runtime_error("Desired value is bigger than units size.");
+        ++it;
+    }
+
+    Values initial(numberOfUnits);
+
+    for (unsigned int i = 0; i < numberOfUnits; i++)
+    {
+        initial[i] = std::abs(std::atoi(argv[it]));
+        if (initial[i] > m_sizes[i])
+            throw std::runtime_error("Initial value is bigger than units size.");
+        ++it;
+    }
+
+    execute(initial);
+}
+
+void Executor::execute(const Values& initial)
+{
     SharedPtr<Node> root = std::make_shared<Node>(initial);
     m_openList.addLast(root);
 
     executeBFS();
 }
 
-void Executor::loadSizes(unsigned int numberOfUnits) noexcept
+void Executor::loadSizes(const unsigned int numberOfUnits) noexcept
 {
     m_sizes = Values(numberOfUnits);
 
@@ -39,7 +85,7 @@ void Executor::loadSizes(unsigned int numberOfUnits) noexcept
     }
 }
 
-void Executor::loadDesired(unsigned int numberOfUnits)
+void Executor::loadDesired(const unsigned int numberOfUnits)
 {
     m_desired = Values(numberOfUnits);
 
@@ -52,7 +98,7 @@ void Executor::loadDesired(unsigned int numberOfUnits)
     }
 }
 
-Values Executor::loadInitial(unsigned int numberOfUnits) const
+Values Executor::loadInitial(const unsigned int numberOfUnits) const
 {
     Values initial(numberOfUnits);
 
@@ -71,9 +117,14 @@ void Executor::executeBFS()
 {
     while (!m_openList.isEmpty())
     {
+        const auto current = m_openList.getFirst();
+
+        m_openList.removeFirst();
+        m_closedList.addLast(current->getValues());
+
         for (unsigned int j = 0; j < m_sizes.size(); j++)
         {
-            auto jValue = m_openList.getValueFromFirstAt(j);
+            const auto jValue = current->getValueAt(j);
 
             // I have nothing to move because unit is empty.
             if (jValue == 0)
@@ -84,65 +135,85 @@ void Executor::executeBFS()
                 if (k == j)
                     continue;
 
-                auto kValue = m_openList.getValueFromFirstAt(k);
+                const auto kValue = current->getValueAt(k);
 
                 // I cannot move anything here because target unit is full.
                 if (kValue == m_sizes[k])
                     continue;
 
                 // How much can I move to this unit.
-                auto capacity = m_sizes[k] - kValue;
+                const auto capacity = m_sizes[k] - kValue;
 
-                // How much is actualy moved this iteration.
-                auto change = std::min(capacity, jValue);
+                // How much is actually moved this iteration.
+                const auto change = std::min(capacity, jValue);
 
-                // Perform.
-                auto local = m_openList.getValuesFromFirst();
+                // Perform movement.
+                auto local = current->getValues();
                 local[j] -= change;
                 local[k] += change;
 
+                // Closed list check.
+                if (m_closedList.contains(local))
+                    continue;
+
+                const auto rank = calculateRank(local);
+
+                const auto node = std::make_shared<Node>(std::move(local), current, j, k, rank);
+
                 // Desired state check.
-                if (local == m_desired)
+                if (rank == 0)
                 {
-                    auto result = std::make_shared<Node>(local, Node::Parent(m_openList.getFirst(), j, k));
-                    showSolution(result);
+                    showSolution(std::move(node));
                     return;
                 }
 
-                // Close list check.
-                if (m_closeList.contains(local))
-                    continue;
-
                 // Add new state to open list.
-                auto ptr = std::make_shared<Node>(local, Node::Parent(m_openList.getFirst(), j, k));
-                m_openList.addLast(ptr);
+                m_openList.addInPlace(std::move(node));
             }
         }
-        // Add current state to close list.
-        m_closeList.addLast(m_openList.getValuesFromFirst());
-        // Remove current state from open list.
-        m_openList.removeFirst();
     }
     std::cout << "No solution found.\n> ";
 }
 
-void Executor::showSolution(SharedPtr<Node> result) const noexcept
+unsigned int Executor::calculateRank(const Values& values) const noexcept
 {
+    unsigned int rank = 0u;
+
+    for (unsigned int i = 0; i < values.size(); i++)
+    {
+        const int a = values[i] - m_desired[i];
+        rank += std::abs(a);
+    }
+
+    return rank;
+}
+
+void Executor::showSolution(const SharedPtr<Node>& node) const noexcept
+{
+    auto current = node;
+
     while (true)
     {
-        for (auto value : result->getValues())
+        for (const auto value : current->getValues())
         {
             std::cout << " " << value;
         }
 
-        auto parent = result->getParent();
-        if (parent.m_parent == nullptr)
+        auto parent = current->getParent();
+
+        if (parent == nullptr)
         {
             std::cout << "\n";
-            break;
+            return;
         }
 
-        std::cout << ". Moved from unit #" << (parent.m_from + 1) << " to unit #" << (parent.m_to + 1) << "\n";
-        result = parent.m_parent;
+        std::cout
+        << ". Moved from unit #"
+        << (current->getPathFrom() + 1)
+        << " to unit #"
+        << (current->getPathTo() + 1)
+        << "\n";
+
+        current = parent;
     }
 }

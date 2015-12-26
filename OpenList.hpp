@@ -15,7 +15,22 @@ private:
 
 public:
 
-    inline void addLast(SharedPtr<Node> element) noexcept
+    inline void addInPlace(const SharedPtr<Node> element) noexcept
+    {
+        if (isEmpty())
+            addLast(element);
+
+        auto it = list.begin();
+        const auto rank = element->getRank();
+
+        while (it != list.end() && (*it)->getRank() <= rank)
+        {
+            ++it;
+        }
+        list.insert(it, element);
+    }
+
+    inline void addLast(const SharedPtr<Node> element) noexcept
     {
         list.push_back(element);
     }
@@ -25,22 +40,12 @@ public:
         list.erase(list.begin());
     }
 
-    inline const bool isEmpty() const noexcept
+    inline bool isEmpty() const noexcept
     {
         return !list.size();
     }
 
-    inline const unsigned int getValueFromFirstAt(unsigned int index) const noexcept
-    {
-        return list[0]->getValueAt(index);
-    }
-
-    inline const Values getValuesFromFirst() const noexcept
-    {
-        return list[0]->getValues();
-    }
-
-    inline SharedPtr<Node> getFirst() const noexcept
+    inline const SharedPtr<Node>& getFirst() const noexcept
     {
         return list[0];
     }

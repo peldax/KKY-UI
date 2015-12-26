@@ -15,7 +15,7 @@ private:
 
 public:
 
-    inline const bool contains(const Values& element) const noexcept
+    inline bool contains(const Values& element) const noexcept
     {
         auto ptr = std::find(list.begin(), list.end(), element);
         return ptr != list.end();

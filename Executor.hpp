@@ -18,20 +18,32 @@ private:
     Values m_sizes;
     Values m_desired;
 
-    ClosedList m_closeList;
+    ClosedList m_closedList;
     OpenList m_openList;
 
 public:
 
-    void execute();
+    Executor(const Values& sizes, const Values& desired):
+    m_sizes(sizes), m_desired(desired)
+    {
+        // Nothing to do
+    }
+
+    Executor() = default;
+
+    void load();
+    void loadArguments(int argc, char *argv[]);
+    void execute(const Values& initial);
 
 private:
 
-    void loadSizes(unsigned int numberOfUnits) noexcept;
-    void loadDesired(unsigned int numberOfUnits);
-    Values loadInitial(unsigned int numberOfUnits) const;
+    void loadSizes(const unsigned int numberOfUnits) noexcept;
+    void loadDesired(const unsigned int numberOfUnits);
+    Values loadInitial(const unsigned int numberOfUnits) const;
 
     void executeBFS();
 
-    void showSolution(SharedPtr<Node> result) const noexcept;
+    unsigned int calculateRank(const Values& values) const noexcept;
+
+    void showSolution(const SharedPtr<Node>& result) const noexcept;
 };
