@@ -15,25 +15,25 @@ You can either insert data manualy...
 
 ```
 Insert number of units:
-\> 3
+> 3
 Insert maximum size of 1. unit:
-\> 9
+> 9
 Insert maximum size of 2. unit:
-\> 8
+> 8
 Insert maximum size of 3. unit:
-\> 2
+> 2
 Insert desired state of 1. unit:
-\> 4
+> 4
 Insert desired state of 2. unit:
-\> 3
+> 3
 Insert desired state of 3. unit:
-\> 2
+> 2
 Insert initial state of 1. unit:
-\> 9
+> 9
 Insert initial state of 2. unit:
-\> 0
+> 0
 Insert initial state of 3. unit:
-\> 0
+> 0
 ```
 
 ...or pass them as parameters (sizes of units, desired state, initial state)
