@@ -39,17 +39,17 @@ You can either insert data manualy...
 ##### ./KKY-UI 9 8 2 4 3 2 9 0 0
 
 ### Output:
-
- 4 3 2. Moved from unit #2 to unit #3
- 
- 4 5 0. Moved from unit #3 to unit #1
- 
- 2 5 2. Moved from unit #2 to unit #3
- 
- 2 7 0. Moved from unit #3 to unit #1
- 
- 0 7 2. Moved from unit #1 to unit #2
- 
- 7 0 2. Moved from unit #1 to unit #3
  
  9 0 0
+Moved from unit #1 to unit #3
+ 7 0 2
+Moved from unit #1 to unit #2
+ 0 7 2
+Moved from unit #3 to unit #1
+ 2 7 0
+Moved from unit #2 to unit #3
+ 2 5 2
+Moved from unit #3 to unit #1
+ 4 5 0
+Moved from unit #2 to unit #3
+ 4 3 2

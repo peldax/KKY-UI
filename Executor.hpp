@@ -39,5 +39,5 @@ private:
 
     unsigned int calculateRank(const Values& values) const noexcept;
 
-    void showSolution(const SharedPtr<Node>& result) const noexcept;
+    void showSolution(SharedPtr<Node> result) const noexcept;
 };

@@ -161,9 +161,12 @@ void Executor::executeBFS()
                 const auto node = std::make_shared<Node>(std::move(local), current, j, k, rank);
 
                 if (rank == 0)
-                    showSolution(node);
-                else
-                    m_openList.addInPlace(std::move(node));
+                {
+                    showSolution(std::move(node));
+                    return;
+                }
+
+                m_openList.addInPlace(std::move(node));
             }
         }
     }
@@ -183,32 +186,27 @@ unsigned int Executor::calculateRank(const Values& values) const noexcept
     return rank;
 }
 
-void Executor::showSolution(const SharedPtr<Node>& node) const noexcept
+void Executor::showSolution(SharedPtr<Node> node) const noexcept
 {
-    auto current = node;
+    Stack<SharedPtr<Node>> stack;
 
-    while (true)
+    // Push path to stack.
+    stack.push(node);
+    while (!stack.top()->isRoot())
     {
-        for (const auto value : current->getValues())
-        {
-            std::cout << " " << value;
-        }
-
-        auto parent = current->getParent();
-
-        if (parent == nullptr)
-        {
-            std::cout << "\n";
-            return;
-        }
-
-        std::cout
-        << ". Moved from unit #"
-        << (current->getPathFrom() + 1)
-        << " to unit #"
-        << (current->getPathTo() + 1)
-        << "\n";
-
-        current = parent;
+        stack.push(stack.top()->getParent());
     }
+
+    // Print initial state.
+    stack.top()->printValues();
+    stack.pop();
+
+    // Print children.
+    do
+    {
+        stack.top()->printPath();
+        stack.top()->printValues();
+        stack.pop();
+    }
+    while (!stack.empty());
 }

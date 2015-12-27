@@ -73,6 +73,30 @@ public:
     {
         return m_rank;
     }
+
+    inline bool isRoot() const noexcept
+    {
+        return m_parent == nullptr;
+    }
+
+    inline void printValues() const noexcept
+    {
+        for (const auto value : m_values)
+        {
+            std::cout << " " << value;
+        }
+        std::cout << "\n";
+    }
+
+    inline void printPath() const noexcept
+    {
+        std::cout
+        << "Moved from unit #"
+        << getPathFrom() + 1
+        << " to unit #"
+        << getPathTo() + 1
+        << ".\n";
+    }
 };
 
 /* ********************************************************************************************** */
