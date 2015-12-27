@@ -34,7 +34,7 @@ You can either insert data manualy...
 ##### Insert initial state of 3. unit:
 \> 0
 
-...or pass them as parameters (sizes of bottles, desired state, initial state)
+...or pass them as parameters (sizes of units, desired state, initial state)
 
 ##### ./KKY-UI 9 8 2 4 3 2 9 0 0
 
