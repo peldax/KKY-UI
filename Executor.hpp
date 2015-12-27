@@ -23,17 +23,11 @@ private:
 
 public:
 
-    Executor(const Values& sizes, const Values& desired):
-    m_sizes(sizes), m_desired(desired)
-    {
-        // Nothing to do
-    }
-
     Executor() = default;
 
     void load();
     void loadArguments(int argc, char *argv[]);
-    void execute(const Values& initial);
+    void execute(Values initial);
 
 private:
 

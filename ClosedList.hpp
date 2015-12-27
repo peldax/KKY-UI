@@ -21,8 +21,8 @@ public:
         return ptr != list.end();
     }
 
-    inline void addLast(const Values& element) noexcept
+    inline void addLast(Values element) noexcept
     {
-        list.push_back(element);
+        list.push_back(std::move(element));
     }
 };

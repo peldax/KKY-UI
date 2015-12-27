@@ -20,7 +20,7 @@ void Executor::load()
     loadDesired(numberOfUnits);
     Values initial = loadInitial(numberOfUnits);
 
-    execute(initial);
+    execute(std::move(initial));
 }
 
 void Executor::loadArguments(int argc, char *argv[])
@@ -63,13 +63,13 @@ void Executor::loadArguments(int argc, char *argv[])
         ++it;
     }
 
-    execute(initial);
+    execute(std::move(initial));
 }
 
-void Executor::execute(const Values& initial)
+void Executor::execute(Values initial)
 {
-    SharedPtr<Node> root = std::make_shared<Node>(initial);
-    m_openList.addLast(root);
+    SharedPtr<Node> root = std::make_shared<Node>(std::move(initial));
+    m_openList.addLast(std::move(root));
 
     executeBFS();
 }
@@ -160,15 +160,10 @@ void Executor::executeBFS()
 
                 const auto node = std::make_shared<Node>(std::move(local), current, j, k, rank);
 
-                // Desired state check.
                 if (rank == 0)
-                {
-                    showSolution(std::move(node));
-                    return;
-                }
-
-                // Add new state to open list.
-                m_openList.addInPlace(std::move(node));
+                    showSolution(node);
+                else
+                    m_openList.addInPlace(std::move(node));
             }
         }
     }

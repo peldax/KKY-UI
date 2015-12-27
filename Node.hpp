@@ -34,12 +34,12 @@ class Node
 public:
 
     Node(
-            const Values& values,
-            const SharedPtr<Node> parent = nullptr,
+            Values values,
+            SharedPtr<Node> parent = nullptr,
             const unsigned int from = 0,
             const unsigned int to = 0,
             const unsigned int rank = UINT_MAX):
-    m_values(values), m_parent(parent), m_path(Path(from, to)), m_rank(rank)
+    m_values(std::move(values)), m_parent(std::move(parent)), m_path(Path(from, to)), m_rank(rank)
     {
         // Nothing to do
     }
@@ -47,6 +47,11 @@ public:
     inline const Values& getValues() const noexcept
     {
         return m_values;
+    }
+
+    inline const SharedPtr<Node>& getParent() const noexcept
+    {
+        return m_parent;
     }
 
     inline unsigned int getValueAt(unsigned int index) const noexcept
@@ -62,11 +67,6 @@ public:
     inline unsigned int getPathTo() const noexcept
     {
         return m_path.m_to;
-    }
-
-    inline const SharedPtr<Node>& getParent() const noexcept
-    {
-        return m_parent;
     }
 
     inline unsigned int getRank() const noexcept
