@@ -17,19 +17,13 @@ public:
 
     inline void addInPlace(SharedPtr<Node> element) noexcept
     {
-        if (isEmpty())
-        {
-            addLast(std::move(element));
-            return;
-        }
+        const auto it = std::upper_bound(m_list.begin(), m_list.end(), element,
+                [](const SharedPtr<Node>& lhs, const SharedPtr<Node>& rhs)
+                {
+                    return lhs->getRank() < rhs->getRank();
+                }
+        );
 
-        auto it = m_list.begin();
-        const auto rank = element->getRank();
-
-        while (it != m_list.end() && (*it)->getRank() <= rank)
-        {
-            ++it;
-        }
         m_list.insert(it, std::move(element));
     }
 
