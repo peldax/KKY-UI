@@ -13,25 +13,43 @@ This algorithm uses heuristic ranking system to enormously enhance its performan
 
 You can either insert data manualy...
 
-##### Insert number of units:
+Insert number of units:
+
 \> 3
-##### Insert maximum size of 1. unit:
+
+Insert maximum size of 1. unit:
+
 \> 9
-##### Insert maximum size of 2. unit:
+
+Insert maximum size of 2. unit:
+
 \> 8
-##### Insert maximum size of 3. unit:
+
+Insert maximum size of 3. unit:
+
 \> 2
-##### Insert desired state of 1. unit:
+
+Insert desired state of 1. unit:
 \> 4
-##### Insert desired state of 2. unit:
+
+Insert desired state of 2. unit:
+
 \> 3
-##### Insert desired state of 3. unit:
+
+Insert desired state of 3. unit:
+
 \> 2
-##### Insert initial state of 1. unit:
+
+Insert initial state of 1. unit:
+
 \> 9
-##### Insert initial state of 2. unit:
+
+Insert initial state of 2. unit:
+
 \> 0
-##### Insert initial state of 3. unit:
+
+Insert initial state of 3. unit:
+
 \> 0
 
 ...or pass them as parameters (sizes of units, desired state, initial state)
@@ -41,15 +59,27 @@ You can either insert data manualy...
 ### Output:
  
  9 0 0
+ 
 Moved from unit #1 to unit #3
+
  7 0 2
+ 
 Moved from unit #1 to unit #2
+
  0 7 2
+ 
 Moved from unit #3 to unit #1
+
  2 7 0
+ 
 Moved from unit #2 to unit #3
+
  2 5 2
+ 
 Moved from unit #3 to unit #1
+
  4 5 0
+ 
 Moved from unit #2 to unit #3
+
  4 3 2
