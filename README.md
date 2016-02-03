@@ -1,5 +1,7 @@
 # KKY-UI
 
+[![Build Status](https://travis-ci.org/peldax/KKY-UI.svg?branch=master)](https://travis-ci.org/peldax/KKY-UI)
+
 ##### First semester 2015/2016
 ##### Programming language - C++
 ##### Language of Comments - English
@@ -59,3 +61,15 @@ Moved from unit #3 to unit #1
 Moved from unit #2 to unit #3
  4 3 2
 ```
+
+## Build
+
+```
+cd sources
+mkdir build
+cd build
+cmake ..
+make
+```
+
+
