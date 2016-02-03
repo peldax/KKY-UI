@@ -12,11 +12,9 @@ os:
 addons:
   apt:
     sources:
-      - llvm-toolchain-precise
       - ubuntu-toolchain-r-test
     packages:
       - cmake
-      - clang-3.7
       - g++-5
 
 compiler:
