@@ -7,7 +7,9 @@
 This is semestral work for subject KKY / UI (Artificial Inteligence) at University of West Bohemia - Faculty of Applied Sciences.
 
 This little application computes the fastest way how to spill a fluid between different bottles to get desired amount in each bottle.
-This algorithm uses heuristic ranking system to enormously enhance its performance compared to standard BFS.
+This algorithm uses Hill-Climbing ranking system to enormously enhance its performance compared to standard BFS.
+
+Please note that Hill-Climbing is not A* algorithm.
 
 ## Example
 
