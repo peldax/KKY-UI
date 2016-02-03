@@ -16,6 +16,7 @@ addons:
     packages:
       - cmake
       - g++-5
+      - clang-3.6
 
 compiler:
   - gcc
