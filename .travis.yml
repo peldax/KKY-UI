@@ -1,11 +1,35 @@
 language: cpp
 
+env:
+  global:
+    - VENDOR_DIR=$HOME/vendor/$TRAVIS_OS_NAME
+    - VERSION=1.0.0
+
+os:
+  - linux
+  - osx
+
+addons:
+  apt:
+    sources:
+      - llvm-toolchain-precise
+      - ubuntu-toolchain-r-test
+    packages:
+      - cmake
+      - clang-3.7
+      - g++-5
+
 compiler:
   - gcc
+  - clang
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "linux" -a "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" -a "$CXX" = "clang++" ]; then export CXX="clang++-3.6" CC="clang-3.6"; fi
 
 before_script:
-  - mkdir build
+  - mkdir build 
   - cd build
   - cmake ..
 
-script: make
+script: make VERBOSE=1
