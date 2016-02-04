@@ -64,6 +64,8 @@ Moved from unit #2 to unit #3
 
 ## Build
 
+Sources are automatically tested for build errors (using Travis CI) on Linux and OSX, using both gcc and clang.
+
 ```
 cd sources
 mkdir build
