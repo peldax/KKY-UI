@@ -1,17 +1,26 @@
 
 version: 1.0.0.{build}
 
+clone_folder: c:\projects\kky-ui
+
 branches:
   only:
     - master
-    
-os: Visual Studio 2015
 
+os:
+  - Visual Studio 2015
 platform:
   - x64
-
 configuration:
   - Release
-  
+
+matrix:
+  fast_finish: true
+
 before_build:
-  - cmake .
+  - echo Running cmake...
+  - cd c:\projects\kky-ui
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
+  
+build:
+  project: INSTALL.vcxproj
