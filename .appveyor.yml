@@ -13,7 +13,7 @@ platform:
 configuration:
   - Release
   
-before.build:
+before-build:
   - mkdir build
   - cd build
   - cmake ..
