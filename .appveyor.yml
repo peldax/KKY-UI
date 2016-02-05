@@ -1,0 +1,19 @@
+
+version: 1.0.0
+
+branches:
+  only:
+    - master
+    
+os: Visual Studio 2015
+
+platform:
+  - x64
+
+configuration:
+  - Release
+  
+before.build:
+  - mkdir build
+  - cd build
+  - cmake ..
