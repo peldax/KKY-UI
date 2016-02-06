@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/peldax/KKY-UI.svg?branch=master)](https://travis-ci.org/peldax/KKY-UI)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/639x11v3muwa2rbe/branch/master?svg=true)](https://ci.appveyor.com/project/peldax/kky-ui/branch/master)
+
 ##### First semester 2015/2016
 ##### Programming language - C++
 ##### Language of Comments - English
@@ -64,7 +66,9 @@ Moved from unit #2 to unit #3
 
 ## Build
 
-Sources are automatically tested for build errors (using Travis CI) on Linux and OSX, using both gcc and clang.
+Sources are automatically tested for build errors (using Travis CI and Appveyor) on Linux, Windows and OSX.
+
+### How to build:
 
 ```
 cd sources
