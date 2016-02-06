@@ -11,14 +11,16 @@ os:
   - Visual Studio 2015
 platform:
   - x64
+  - x86
+  - ARM
 configuration:
   - Release
 
 matrix:
   fast_finish: true
 
-before_build:
+build_script:
   - echo Running cmake...
   - cd c:\projects\kky-ui
-  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%P%
+  - cmake --build
 
