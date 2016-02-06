@@ -1,6 +1,8 @@
 // Created by peldax 20/12/2015
 
 #include <exception>
+#include <string>
+#include <iostream>
 
 #include "Executor.hpp"
 
