@@ -19,11 +19,13 @@ configuration:
 matrix:
   fast_finish: true
 
-build_script:
+before_build:
   - cd c:\projects\kky-ui
   - mkdir build
   - cd build
   - cmake ..
+  
+build:
   - cmake --build .
 
 
