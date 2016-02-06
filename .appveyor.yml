@@ -20,7 +20,10 @@ matrix:
   fast_finish: true
 
 build_script:
-  - echo Running cmake...
   - cd c:\projects\kky-ui
-  - cmake --build
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+
 
