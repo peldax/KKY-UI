@@ -1,8 +1,13 @@
 # KKY-UI
 
-[![Build Status](https://travis-ci.org/peldax/KKY-UI.svg?branch=master)](https://travis-ci.org/peldax/KKY-UI)
+[![Version](https://img.shields.io/badge/version-1.1-brightgreen.svg)](https://github.com/peldax/SimplePHPGallery/releases/tag/v5.2)
 
+[![Maintained](https://img.shields.io/badge/maintained-no-red.svg)](https://github.com/peldax/SimplePHPGallery/releases)
+[![Issues](https://img.shields.io/badge/issues-0-brightgreen.svg)](https://github.com/peldax/SimplePHPGallery/issues)
+
+[![Build Status](https://travis-ci.org/peldax/KKY-UI.svg?branch=master)](https://travis-ci.org/peldax/KKY-UI)
 [![Build status](https://ci.appveyor.com/api/projects/status/639x11v3muwa2rbe/branch/master?svg=true)](https://ci.appveyor.com/project/peldax/kky-ui/branch/master)
+
 
 ##### First semester 2015/2016
 ##### Programming language - C++
@@ -77,5 +82,4 @@ cd build
 cmake ..
 cmake --build
 ```
-
 
