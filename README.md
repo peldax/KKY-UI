@@ -9,9 +9,9 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/639x11v3muwa2rbe/branch/master?svg=true)](https://ci.appveyor.com/project/peldax/kky-ui/branch/master)
 
 
-##### First semester 2015/2016
-##### Programming language - C++
-##### Language of Comments - English
+* School year - **2015/2016**
+* Programming language - **C++**
+* Language of Comments - **English**
 
 This is semestral work for subject KKY / UI (Artificial Inteligence) at University of West Bohemia - Faculty of Applied Sciences.
 
